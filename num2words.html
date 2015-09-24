@@ -1,0 +1,42 @@
+</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="jquery.serializeJSON.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("#simplepost").click(function(e)
+	{
+		var MyForm = $("#ajaxform").serializeJSON();
+		console.log(MyForm);
+ 		$.ajax(
+ 		{
+ 			url : "submit.php",
+ 			type: "POST",
+ 			data : {valArray:MyForm},
+ 			success:function(maindta)
+ 			{
+				alert(maindta);
+ 			},
+ 			error: function(jqXHR, textStatus, errorThrown)
+ 			{
+ 			}
+ 		});
+ 		e.preventDefault(); //STOP default action
+	});
+});
+</script>
+
+</body>
+
+<div id="numbers_div"> </div>
+<form name="ajaxform" id="ajaxform" method="POST">
+	<textarea rows="10" cols="100"  wrap="hard"> </textarea></br>
+	<input type="button" class="btn btn-info" id="simplepost" value="Convert to Words">
+</form>
+
+</html>
+<span style="text-align: justify;">

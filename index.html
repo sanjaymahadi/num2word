@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Convert number to words</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+
+</head>
+
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="jquery.serializeJSON.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("#simplepost").click(function(e)
+  {
+    var MyForm = $("#ajaxform").serializeJSON();
+    console.log(MyForm);
+    $.ajax(
+    {
+      url : "submit.php",
+      type: "POST",
+      data : {valArray:MyForm},
+      success:function(maindta)
+      {
+        alert(maindta);
+      },
+      error: function(jqXHR, textStatus, errorThrown)
+      {
+      }
+    });
+    e.preventDefault(); //STOP default action
+  });
+});
+</script>
+
+<form name="ajaxform" id="ajaxform" method="POST">
+  <header>
+    <h2>Convert numbers to words</h2>
+    <div>enter an integer number and click on the button below</div>
+  </header>
+  
+    <div>
+      <textarea id="number" name="number"  rows="10" cols="50" tabindex="4"></textarea>
+    </div>
+    
+  <div>
+    <div>
+      <input id="saveForm" name="saveForm" type="submit" value="Convert to Words">
+    </div>
+  </div>
+  
+  <div>
+    <label class="desc" id="title4" name="Field4">
+      Words here
+    </label>
+  </div>
+</form>
+
+  
+
+</body>
+
+</html>
